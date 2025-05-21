@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de [Tu Nombre]</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#3b82f6', // Un azul vibrante
+                        secondary: '#6b7280', // Gris oscuro
+                        accent: '#10b981', // Verde esmeralda
+                        background: '#f9fafb', // Gris muy claro
+                        card: '#ffffff', // Blanco para tarjetas
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos globales para el cuerpo */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: theme('colors.background');
+            color: theme('colors.secondary');
+            -webkit-font-smoothing: antialiased; /* Suavizado de fuentes para Webkit */
+            -moz-osx-font-smoothing: grayscale; /* Suavizado de fuentes para Firefox */
+        }
+        /* Estilo para los contenedores de sección */
+        section {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            max-width: 80rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Estilo para los títulos de sección */
+        h2 {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 800;    /* font-extrabold */
+            color: #111827;      /* text-gray-900 */
+            margin-bottom: 3rem; /* mb-12 */
+            text-align: center;  /* text-center */
+        }
+        /* Estilos para los botones */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            border: 1px solid transparent;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 0.375rem;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            transition-property: all;
+            transition-duration: 300ms;
+            transition-timing-function: ease-in-out;
+        }
+        .btn-primary {
+            color: #fff;
+            background-color: #3b82f6;
+            outline: none;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb; /* blue-700 */
+        }
+        .btn-primary:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+        .btn-secondary {
+            color: #374151; /* text-gray-700 */
+            background-color: #e5e7eb; /* bg-gray-200 */
+            outline: none;
+        }
+        .btn-secondary:hover {
+            background-color: #d1d5db; /* bg-gray-300 */
+        }
+        .btn-secondary:focus {
+            outline: 2px solid #6b7280; /* ring-gray-500 */
+            outline-offset: 2px;
+        }
+        .btn-github {
+            color: #fff;
+            background-color: #1f2937; /* bg-gray-800 */
+            outline: none;
+        }
+        .btn-github:hover {
+            background-color: #111827; /* bg-gray-900 */
+        }
+        .btn-github:focus {
+            outline: 2px solid #1f2937;
+            outline-offset: 2px;
+        }
+        .btn-demo {
+            color: #fff;
+            background-color: #10b981; /* accent */
+            outline: none;
+        }
+        .btn-demo:hover {
+            background-color: #059669; /* green-600 */
+        }
+        .btn-demo:focus {
+            outline: 2px solid #10b981;
+            outline-offset: 2px;
+        }
+        /* Ajuste para el scroll suave con navbar fijo */
+        html {
+            scroll-padding-top: 64px; /* Altura del navbar */
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="bg-gray-900 text-white p-4 shadow-lg fixed w-full z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-primary">
+                Mi sitio Web
+            </a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="hover:text-primary transition duration-300">Inicio</a>
+                <a href="#about" class="hover:text-primary transition duration-300">Acerca de Mí</a>
+                <a href="#skills" class="hover:text-primary transition duration-300">Habilidades</a>
+                <a href="#projects" class="hover:text-primary transition duration-300">Proyectos</a>
+                <a href="#contact" class="hover:text-primary transition duration-300">Contacto</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 mt-4 rounded-lg shadow-md">
+            <a href="#home" class="block px-4 py-2 hover:bg-gray-700 transition duration-300">Inicio</a>
+            <a href="#about" class="block px-4 py-2 hover:bg-gray-700 transition duration-300">Acerca de Mí</a>
+            <a href="#skills" class="block px-4 py-2 hover:bg-gray-700 transition duration-300">Habilidades</a>
+            <a href="#projects" class="block px-4 py-2 hover:bg-gray-700 transition duration-300">Proyectos</a>
+            <a href="#contact" class="block px-4 py-2 hover:bg-gray-700 transition duration-300">Contacto</a>
+        </div>
+    </nav>
+
+    <main class="pt-16">
+        <section id="home" class="min-h-screen flex flex-col md:flex-row items-center justify-center bg-gradient-to-r from-blue-50 to-indigo-100 text-center md:text-left pb-10">
+            <div class="md:w-1/2 p-4">
+                <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-4">
+                    ¡Hola! Soy <span class="text-primary">Ivan Galaviz</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-700 mb-8">
+                    Egresado de la carrera de Tecnologías de la Información en la Universidad Veracruzana.
+                    Desarrollador Full Stack Jr. apasionado por crear soluciones web innovadoras y eficientes.
+                </p>
+                <div class="flex justify-center md:justify-start space-x-4">
+                    <a href="#projects" class="btn btn-primary">Ver mis Proyectos</a>
+                    <a href="#contact" class="btn btn-secondary">Contactar</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 p-4 flex justify-center mt-8 md:mt-0">
+                <img src="Img.jpeg" alt="Tu Foto Profesional" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-2xl border-4 border-white">
+            </div>
+        </section>
+
+        <section id="about" class="bg-white rounded-xl shadow-lg p-8">
+            <h2>Acerca de Mí</h2>
+            <div class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+                <p class="mb-4">
+                    Soy Jorge Ivan Galaviz Hernandez, un entusiasta de la Tecnología y el desarrollo web, tengo 24 años, recién egresado de la
+                    <span class="font-semibold text-primary">Universidad Veracruzana</span>.
+                    Mi formación me ha proporcionado una sólida base en el desarrollo web y la gestión de bases de datos.
+                </p>
+                <p class="mb-4">
+                    Me apasiona transformar ideas en soluciones digitales funcionales y escalables.
+                    Soy una persona proactiva, con una gran capacidad de aprendizaje y siempre en busca de nuevos retos que me permitan crecer profesionalmente.
+                </p>
+                <p class="mb-4">
+                    Disfruto trabajando en equipo y aplicando metodologías ágiles como <span class="font-semibold text-primary">Scrum</span> para optimizar los procesos de desarrollo y entregar valor de manera eficiente.
+                    Mi objetivo es contribuir en proyectos innovadores y seguir expandiendo mis conocimientos en el dinámico mundo de la tecnología.
+                </p>
+                <p>
+                    Fuera del código, me gusta [Menciona un hobby o interés personal, ej: leer, hacer senderismo, jugar videojuegos] para mantener un equilibrio y fomentar la creatividad.
+                </p>
+            </div>
+        </section>
+
+        <section id="skills" class="bg-gray-50 rounded-xl shadow-lg p-8">
+            <h2>Mis Habilidades</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-card p-6 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Lenguajes de Programación</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                <div class="bg-card p-6 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Backend</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>Node.js</li>
+                        <li>Express.js (Framework para Node.js)</li>
+                    </ul>
+                </div>
+                <div class="bg-card p-6 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Bases de Datos</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>PostgreSQL</li>
+                        <li>Diseño de Bases de Datos Relacionales</li>
+                    </ul>
+                </div>
+                <div class="bg-card p-6 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Frontend Frameworks</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>Angular (Conocimientos sólidos)</li>
+                        <li>React (En aprendizaje activo)</li>
+                        <li>Vue.js (En aprendizaje activo)</li>
+                    </ul>
+                </div>
+                <div class="bg-card p-6 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Control de Versiones</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>Git</li>
+                        <li>GitHub (Manejo de repositorios, Pull Requests)</li>
+                    </ul>
+                </div>
+                <div class="bg-card p-6 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Metodologías y Herramientas</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>Scrum (Metodologías Ágiles)</li>
+                        <li>VS Code (Entorno de Desarrollo Integrado)</li>
+                        <li>npm / yarn (Gestores de paquetes)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="bg-white rounded-xl shadow-lg p-8">
+            <h2>Mis Proyectos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-card rounded-lg shadow-lg p-6 flex flex-col h-full transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Sistema de Gestión de Inventario</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">Aplicación web completa para el control de inventario de productos, incluyendo autenticación de usuarios, CRUD de productos y reportes. Desarrollado con una arquitectura RESTful.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Node.js</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Express.js</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">PostgreSQL</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">HTML</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
+                    </div>
+                    <div class="flex justify-end gap-3 mt-auto">
+                        <a href="https://github.com/tu-usuario/nombre-del-proyecto-inventario" target="_blank" class="btn btn-github">
+                            GitHub
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.499.09.679-.217.679-.481 0-.237-.008-.865-.013-1.702-2.782.602-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.618.069-.606.069-.606 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.087 2.91.829.091-.645.356-1.087.654-1.337-2.22-.253-4.555-1.113-4.555-4.93 0-1.09.39-1.984 1.029-2.682-.103-.253-.446-1.272.098-2.65 0 0 .84-.268 2.75 1.025A9.428 9.428 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.293 2.747-1.025 2.747-1.025.546 1.379.202 2.398.099 2.65.64.698 1.028 1.592 1.028 2.682 0 3.826-2.338 4.673-4.566 4.92.359.309.678.92.678 1.855 0 1.337-.012 2.419-.012 2.747 0 .268.18.58.685.479C19.137 20.171 22 16.416 22 12.017 22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" target="_blank" class="btn btn-demo">
+                            Demo
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M10 6a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2h-4a2 2 0 01-2-2V6zM4 14a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-card rounded-lg shadow-lg p-6 flex flex-col h-full transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Plataforma de Blog Personal</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">Un sistema de blog donde los usuarios pueden crear, editar y publicar artículos. Incluye un panel de administración y un editor de texto enriquecido. Se utilizó Git para el control de versiones.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Node.js</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">PostgreSQL</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">EJS (templating)</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Git</span>
+                    </div>
+                    <div class="flex justify-end gap-3 mt-auto">
+                        <a href="https://github.com/tu-usuario/nombre-del-proyecto-blog" target="_blank" class="btn btn-github">
+                            GitHub
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.499.09.679-.217.679-.481 0-.237-.008-.865-.013-1.702-2.782.602-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.618.069-.606.069-.606 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.087 2.91.829.091-.645.356-1.087.654-1.337-2.22-.253-4.555-1.113-4.555-4.93 0-1.09.39-1.984 1.029-2.682-.103-.253-.446-1.272.098-2.65 0 0 .84-.268 2.75 1.025A9.428 9.428 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.293 2.747-1.025 2.747-1.025.546 1.379.202 2.398.099 2.65.64.698 1.028 1.592 1.028 2.682 0 3.826-2.338 4.673-4.566 4.92.359.309.678.92.678 1.855 0 1.337-.012 2.419-.012 2.747 0 .268.18.58.685.479C19.137 20.171 22 16.416 22 12.017 22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" target="_blank" class="btn btn-demo">
+                            Demo
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M10 6a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2h-4a2 2 0 01-2-2V6zM4 14a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-card rounded-lg shadow-lg p-6 flex flex-col h-full transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Portafolio Web Personal</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">Este mismo portafolio, construido desde cero con HTML, Tailwind CSS y JavaScript para demostrar mis habilidades en desarrollo web frontend y diseño responsivo. Gestionado con Git.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">HTML</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Tailwind CSS</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Git</span>
+                    </div>
+                    <div class="flex justify-end gap-3 mt-auto">
+                        <a href="https://github.com/tu-usuario/tu-repositorio-portafolio" target="_blank" class="btn btn-github">
+                            GitHub
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.499.09.679-.217.679-.481 0-.237-.008-.865-.013-1.702-2.782.602-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.618.069-.606.069-.606 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.087 2.91.829.091-.645.356-1.087.654-1.337-2.22-.253-4.555-1.113-4.555-4.93 0-1.09.39-1.984 1.029-2.682-.103-.253-.446-1.272.098-2.65 0 0 .84-.268 2.75 1.025A9.428 9.428 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.293 2.747-1.025 2.747-1.025.546 1.379.202 2.398.099 2.65.64.698 1.028 1.592 1.028 2.682 0 3.826-2.338 4.673-4.566 4.92.359.309.678.92.678 1.855 0 1.337-.012 2.419-.012 2.747 0 .268.18.58.685.479C19.137 20.171 22 16.416 22 12.017 22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" target="_blank" class="btn btn-demo">
+                            Demo
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M10 6a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2h-4a2 2 0 01-2-2V6zM4 14a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-card rounded-lg shadow-lg p-6 flex flex-col h-full transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Aplicación de Tareas (React - Aprendizaje)</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">Pequeña aplicación de lista de tareas desarrollada durante mi aprendizaje de React. Permite añadir, marcar como completadas y eliminar tareas. Un proyecto básico para familiarizarme con los hooks y el estado.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">React</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
+                    </div>
+                    <div class="flex justify-end gap-3 mt-auto">
+                        <a href="https://github.com/tu-usuario/react-todo-app" target="_blank" class="btn btn-github">
+                            GitHub
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.499.09.679-.217.679-.481 0-.237-.008-.865-.013-1.702-2.782.602-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.618.069-.606.069-.606 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.087 2.91.829.091-.645.356-1.087.654-1.337-2.22-.253-4.555-1.113-4.555-4.93 0-1.09.39-1.984 1.029-2.682-.103-.253-.446-1.272.098-2.65 0 0 .84-.268 2.75 1.025A9.428 9.428 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.293 2.747-1.025 2.747-1.025.546 1.379.202 2.398.099 2.65.64.698 1.028 1.592 1.028 2.682 0 3.826-2.338 4.673-4.566 4.92.359.309.678.92.678 1.855 0 1.337-.012 2.419-.012 2.747 0 .268.18.58.685.479C19.137 20.171 22 16.416 22 12.017 22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" target="_blank" class="btn btn-demo">
+                            Demo
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M10 6a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2h-4a2 2 0 01-2-2V6zM4 14a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-card rounded-lg shadow-lg p-6 flex flex-col h-full transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Clon de Interfaz (Vue.js - Aprendizaje)</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">Un ejercicio de clonación de una interfaz de usuario sencilla (ej. una sección de una landing page) utilizando Vue.js. Enfocado en el manejo de componentes y directivas básicas de Vue.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Vue.js</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">HTML</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
+                    </div>
+                    <div class="flex justify-end gap-3 mt-auto">
+                        <a href="https://github.com/tu-usuario/vue-ui-clone" target="_blank" class="btn btn-github">
+                            GitHub
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.499.09.679-.217.679-.481 0-.237-.008-.865-.013-1.702-2.782.602-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.618.069-.606.069-.606 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.087 2.91.829.091-.645.356-1.087.654-1.337-2.22-.253-4.555-1.113-4.555-4.93 0-1.09.39-1.984 1.029-2.682-.103-.253-.446-1.272.098-2.65 0 0 .84-.268 2.75 1.025A9.428 9.428 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.293 2.747-1.025 2.747-1.025.546 1.379.202 2.398.099 2.65.64.698 1.028 1.592 1.028 2.682 0 3.826-2.338 4.673-4.566 4.92.359.309.678.92.678 1.855 0 1.337-.012 2.419-.012 2.747 0 .268.18.58.685.479C19.137 20.171 22 16.416 22 12.017 22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" target="_blank" class="btn btn-demo">
+                            Demo
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M10 6a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2h-4a2 2 0 01-2-2V6zM4 14a2 2 0 012-2h4a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact" class="bg-gray-50 rounded-xl shadow-lg p-8">
+            <h2>Contacto</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
+                ¡Me encantaría saber de ti! Si tienes alguna pregunta, oportunidad de colaboración o simplemente quieres saludar, no dudes en contactarme.
+            </p>
+            <div class="max-w-md mx-auto bg-card p-6 rounded-lg shadow-md border border-gray-200">
+                <form id="contact-form">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre:</label>
+                        <input type="text" id="name" name="name" required
+                               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-primary">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required
+                               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-primary">
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Mensaje:</label>
+                        <textarea id="message" name="message" rows="5" required
+                                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-primary"></textarea>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <button type="submit" class="btn btn-primary w-full">Enviar Mensaje</button>
+                    </div>
+                </form>
+                <p id="form-message" class="text-center text-accent mt-4 hidden">¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.</p>
+                <p class="text-center text-gray-600 mt-6">
+                    También puedes contactarme directamente en: <br>
+                    <a href="mailto:ivangalav@hotmail.com" class="text-primary hover:underline font-semibold">ivangalav@hotmail.com</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white p-6 text-center mt-12 shadow-inner">
+        <p>&copy; <span id="current-year"></span> Jorge Ivan Galaviz. Todos los derechos reservados.</p>
+        <div class="flex justify-center space-x-4 mt-4">
+            <a href="https://www.linkedin.com/in/galaviz-hern%C3%A1ndez-jorge-iv%C3%A1n-b57217241/" target="_blank" class="hover:text-primary transition duration-300">
+                LinkedIn
+            </a>
+            <a href="https://github.com/Galaver01" target="_blank" class="hover:text-primary transition duration-300">
+                GitHub
+            </a>
+            </div>
+    </footer>
+
+    <script>
+        // JavaScript para el menú móvil
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+        // Función para alternar la visibilidad del menú móvil
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Event listener para el botón del menú móvil
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+        // Cierra el menú móvil al hacer clic en un enlace (para mejor UX)
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // JavaScript para el año actual en el footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // JavaScript para el formulario de contacto (simulación de envío)
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita el envío real del formulario
+
+            // Simula el envío
+            console.log('Formulario enviado:', {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            });
+
+            formMessage.classList.remove('hidden'); // Muestra el mensaje de éxito
+            contactForm.reset(); // Limpia el formulario
+
+            // Oculta el mensaje después de 5 segundos
+            setTimeout(() => {
+                formMessage.classList.add('hidden');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
